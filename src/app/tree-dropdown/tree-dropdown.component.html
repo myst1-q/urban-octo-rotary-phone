@@ -1,52 +1,87 @@
 
-<div style="margin: 50px;">
-    <div>
-        <mat-form-field>
-            <mat-label>Choose the country</mat-label>
-            <mat-select  (selectionChange)="onCountryChange($event)">
-              <mat-option>--</mat-option>
-              <mat-option *ngFor="let country of  countries" [value]="country.countryName">
-                {{country.countryName}}
-              </mat-option>
-              
-            </mat-select>
-      </mat-form-field>
-      
-    </div>
-    
-<div *ngIf="countryflag">
-    <mat-form-field >
-        <mat-label>Choose the state</mat-label>
+<div class="example-container" >
+  <form>
+    &nbsp;&nbsp;&nbsp;<mat-form-field>
+          <mat-label>Country</mat-label>
+          <mat-select (selectionChange)="onCountryChange($event)" >
+            <mat-option>--</mat-option>
+            <mat-option  *ngFor="let country of  countries" [value]="country.countryName">
+              {{country.countryName}}
+            </mat-option>
+            
+          </mat-select>
+    </mat-form-field>
+  
+    &nbsp;&nbsp;&nbsp;<mat-form-field>
+        <mat-label>State</mat-label>
         <mat-select (selectionChange)="onStateChange($event)" >
-            <mat-option>--</mat-option>
-            <mat-option *ngFor="let state of  states1" [value]="state">
-              {{ state}}
-            </mat-option>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let state of  states1" [value]="state">
+            {{ state}}
+          </mat-option>
+          
         </mat-select>
   </mat-form-field>
-</div>
-<div>
-    <mat-form-field *ngIf="stateflag">
-        <mat-label>Choose the city</mat-label>
-        <mat-select (selectionChange)="onCityChange($event)" >
-            <mat-option>--</mat-option>
-            <mat-option *ngFor="let city of  city1" [value]="city">
-              {{city}}
-            </mat-option>
-        </mat-select>
-  </mat-form-field>
+
+  &nbsp;&nbsp;&nbsp;<mat-form-field>
+    <mat-label>City</mat-label>
+    <mat-select  (selectionChange)="onCityChange($event)">
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let city of  city1" [value]="city">
+        {{city}}
+      </mat-option>
+      
+    </mat-select>
+</mat-form-field>
+
+&nbsp;&nbsp;&nbsp;<mat-form-field>
+  <mat-label>Camera Id</mat-label>
+  <mat-select  >
+    <mat-option>--</mat-option>
+    <mat-option *ngFor="let cam of  cam1" [value]="cam">
+{{cam}}
+    </mat-option>
+    
+  </mat-select>
+</mat-form-field>
+
+
+  &nbsp;&nbsp;&nbsp;<button mat-raised-button color="accent">Go</button>
+
+  
+</form>
 </div>
 
 <div>
-    <mat-form-field *ngIf="cityflag">
-        <mat-label>Choose the DC</mat-label>
-        <mat-select (selectionChange)="onDcChange()">
-            <mat-option>--</mat-option>
-            <mat-option *ngFor="let dc of  dc1" [value]="dc">
-              {{dc}}
-            </mat-option>
-        </mat-select>
-  </mat-form-field>
-</div>
-   
+  <button mat-raised-button color="accent" class="btnclass" (click)="bool=true">View Options</button>
+  <div *ngIf="bool">
+    <table>
+      <tr>
+        <td>
+          <p>
+     
+            <mat-button-toggle-group appearance="legacy"  vertical name="fontStyle" aria-label="Font Style">
+              <mat-button-toggle (click)="val=1" value="objectDetection">Object Detection</mat-button-toggle>
+              <mat-button-toggle (click)="val=2" value="license">License Plate Detection</mat-button-toggle>
+              <mat-button-toggle (click)="val=3" value="crowdCount">Crowd Count</mat-button-toggle>
+            </mat-button-toggle-group>
+          </p>
+        </td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        
+        <td>
+          <span *ngIf="val==1">
+            <app-object></app-object>
+          </span>
+          <span *ngIf="val==2">
+            <app-license></app-license>
+          </span>
+          <span *ngIf="val==3">
+            <app-crowd></app-crowd>
+          </span>
+        </td>
+      </tr>
+    </table>
+      
   </div>
+</div>

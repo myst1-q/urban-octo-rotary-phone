@@ -14,7 +14,7 @@ stateName:string;
 
 interface City{
   cityName:string;
-  dc:string[];
+  camera:string[];
 }
 
 
@@ -32,74 +32,60 @@ export class TreeDropdownComponent implements OnInit {
 
   ngOnInit(): void {
   }
- countryflag=false;
- stateflag=false;
- cityflag=false;
- selectedCountry:any;
- dc1:any;
- states1:any;
- city1:any;
- dcflag=false;
-  selected = 'option2';
-  countries: Country[] = [
-    {countryName: 'India', state: ['Kerala','Karnataka']},
-    {countryName: 'Australia', state: ['Bourke St','Queensland']},
-  ];
-  states:State[]=[
-    {stateName:'Kerala',city:['Trivandrum']},
-    {stateName:'Karnataka',city:['Banglore','Mysore']},
-    {stateName:'Bourke St',city:['Dockland']},
-    {stateName:'Queensland',city:['Brisbane']}
-
-  ]
-  cities:City[]=[
-    {cityName:'Trivandrum',dc:['dc1']},
-    {cityName:'Banglore',dc:['dc1','dc2']},
-    {cityName:'Mysore',dc:['dc1','dc2','dc3']},
-    {cityName:'Dockland',dc:['dc1','dc2']},
-    {cityName:'Brisbane',dc:['dc1']},
-
-  ]
-
-  onCountryChange(event:any){
-   
- this.stateflag=false;
- this.cityflag=false;
- this.dcflag=false;
-    console.log(event.value);
-this.countryflag=true;
-this.selectedCountry=event.value;
-for(let i=0;i<this.countries.length;i++){
-  if(this.selectedCountry==this.countries[i].countryName)
-    this.states1=this.countries[i].state;
+  selectedCountry:any;
+  cam1:any;
+  states1:any;
+  city1:any;
+  val:number=0;
+bool:boolean=false;
   
-}
-
-  }
-  onStateChange(event:any){
-    this.cityflag=false;
-    this.dcflag=false;
-    console.log('hello');
-    this.stateflag=true;
-    for(let i=0;i<this.states.length;i++){
-      if(event.value==this.states[i].stateName)
-        this.city1=this.states[i].city;
-      
-    }
-  }
-
-  onCityChange(event:any){
-    this.dcflag=false;
-    console.log('hello fromn dc');
-    this.cityflag=true;
-    for(let i=0;i<this.cities.length;i++){
-      if(event.value==this.cities[i].cityName)
-        this.dc1=this.cities[i].dc;
-      
-    }
-  }
-  onDcChange(){
-    this.dcflag=true
-  }
+   selected = 'option2';
+   countries: Country[] = [
+     {countryName: 'India', state: ['Kerala','Karnataka']},
+     {countryName: 'Australia', state: ['Bourke St','Queensland']},
+   ];
+   states:State[]=[
+     {stateName:'Kerala',city:['Trivandrum']},
+     {stateName:'Karnataka',city:['Banglore','Mysore']},
+     {stateName:'Bourke St',city:['Dockland']},
+     {stateName:'Queensland',city:['Brisbane']}
+ 
+   ]
+   cities:City[]=[
+     {cityName:'Trivandrum',camera:['c1','c2','c3']},
+     {cityName:'Banglore',camera:['c1','c2','c3']},
+     {cityName:'Mysore',camera:['c1','c2','c3']},
+     {cityName:'Dockland',camera:['c1','c2','c3']},
+     {cityName:'Brisbane',camera:['c1','c2','c3']},
+ 
+   ]
+ 
+   onCountryChange(event:any){
+ 
+ this.selectedCountry=event.value;
+ for(let i=0;i<this.countries.length;i++){
+   if(this.selectedCountry==this.countries[i].countryName)
+     this.states1=this.countries[i].state;
+   
+ }
+ 
+   }
+   onStateChange(event:any){
+     
+     for(let i=0;i<this.states.length;i++){
+       if(event.value==this.states[i].stateName)
+         this.city1=this.states[i].city;
+       
+     }
+   }
+ 
+   onCityChange(event:any){
+     
+     for(let i=0;i<this.cities.length;i++){
+       if(event.value==this.cities[i].cityName)
+         this.cam1=this.cities[i].camera;
+       
+     }
+   }
  
 }
